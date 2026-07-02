@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  talent-hub:
+    build: .
+    container_name: university-talent-hub
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - JWT_SECRET=ganti_dengan_secret_yang_kuat
+      - DB_PATH=/app/data/talenthub.db
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    restart: unless-stopped

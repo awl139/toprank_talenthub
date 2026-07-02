@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard Mahasiswa - Talent Hub</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+  <div class="sidebar">
+    <h2>🎓 Talent Hub</h2>
+    <div class="subtitle" id="sidebarUserName">Mahasiswa</div>
+    <nav>
+      <button class="nav-btn active" data-page="profil">👤 Profil Saya</button>
+      <button class="nav-btn" data-page="skill">🧩 Skill</button>
+      <button class="nav-btn" data-page="sertifikat">📜 Sertifikat</button>
+      <button class="nav-btn" data-page="portofolio">💼 Portofolio</button>
+      <button class="nav-btn" data-page="status">📋 Status Pengajuan</button>
+      <button class="nav-btn" data-page="leaderboard">🏆 Leaderboard</button>
+      <button class="nav-btn" data-page="reward">🎁 Reward</button>
+      <button class="nav-btn" data-page="rekomendasi">✨ Rekomendasi AI</button>
+    </nav>
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  </div>
+
+  <div class="main">
+    <div id="msgBox"></div>
+
+    <!-- PROFIL -->
+    <section class="page-section active" id="page-profil">
+      <h1>👤 Profil Saya</h1>
+      <div class="card" style="max-width:520px;">
+        <div id="profilPointBox" style="margin-bottom:16px;"></div>
+        <form id="profileForm">
+          <label>Nama Lengkap</label>
+          <input type="text" id="pName" required />
+          <label>NIM</label>
+          <input type="text" id="pNim" />
+          <label>Program Studi</label>
+          <input type="text" id="pProdi" />
+          <label>Angkatan</label>
+          <input type="text" id="pAngkatan" />
+          <label>Bio Singkat</label>
+          <textarea id="pBio" rows="3" placeholder="Ceritakan tentang dirimu..."></textarea>
+          <button class="btn" style="margin-top:14px;" type="submit">Simpan Profil</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SKILL -->
+    <section class="page-section" id="page-skill">
+      <h1>🧩 Skill Management</h1>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0;">Ajukan Skill Baru</h3>
+          <form id="skillForm">
+            <label>Nama Skill</label>
+            <input type="text" id="sName" required placeholder="mis. UI/UX Design" />
+            <label>Kategori</label>
+            <input type="text" id="sCategory" placeholder="mis. Design, Programming, Content" />
+            <label>Bukti (opsional, JPG/PNG/PDF)</label>
+            <input type="file" id="sProof" accept=".jpg,.jpeg,.png,.pdf" />
+            <button class="btn" style="margin-top:14px;" type="submit">Ajukan untuk Verifikasi</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Daftar Skill Saya</h3>
+          <div id="skillList"><div class="empty-state">Memuat...</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERTIFIKAT -->
+    <section class="page-section" id="page-sertifikat">
+      <h1>📜 Sertifikat</h1>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0;">Unggah Sertifikat</h3>
+          <form id="certForm">
+            <label>Judul Sertifikat</label>
+            <input type="text" id="cTitle" required />
+            <label>Tingkat</label>
+            <select id="cLevel" required>
+              <option value="lokal">Lokal (1 poin)</option>
+              <option value="regional">Regional (3 poin)</option>
+              <option value="nasional">Nasional (5 poin)</option>
+              <option value="internasional">Internasional (10 poin)</option>
+            </select>
+            <label>File Sertifikat (JPG/PNG/PDF)</label>
+            <input type="file" id="cFile" accept=".jpg,.jpeg,.png,.pdf" />
+            <button class="btn" style="margin-top:14px;" type="submit">Ajukan untuk Verifikasi</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Daftar Sertifikat Saya</h3>
+          <div id="certList"><div class="empty-state">Memuat...</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTOFOLIO -->
+    <section class="page-section" id="page-portofolio">
+      <h1>💼 Portofolio</h1>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0;">Tambah Portofolio</h3>
+          <form id="portoForm">
+            <label>Judul Proyek</label>
+            <input type="text" id="poTitle" required />
+            <label>Tipe</label>
+            <select id="poType" required>
+              <option value="personal">Personal (2 poin)</option>
+              <option value="freelance">Freelance (5 poin)</option>
+              <option value="industri">Industri (8 poin)</option>
+            </select>
+            <label>Deskripsi</label>
+            <textarea id="poDesc" rows="3"></textarea>
+            <label>File Bukti (opsional)</label>
+            <input type="file" id="poFile" accept=".jpg,.jpeg,.png,.pdf" />
+            <button class="btn" style="margin-top:14px;" type="submit">Ajukan untuk Verifikasi</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Daftar Portofolio Saya</h3>
+          <div id="portoList"><div class="empty-state">Memuat...</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATUS PENGAJUAN -->
+    <section class="page-section" id="page-status">
+      <h1>📋 Status Semua Pengajuan</h1>
+      <div class="card">
+        <div id="statusList"><div class="empty-state">Memuat...</div></div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="page-section" id="page-leaderboard">
+      <h1>🏆 Leaderboard Mahasiswa</h1>
+      <div class="card">
+        <div id="leaderboardList"><div class="empty-state">Memuat...</div></div>
+      </div>
+    </section>
+
+    <!-- REWARD -->
+    <section class="page-section" id="page-reward">
+      <h1>🎁 Reward Catalog</h1>
+      <div id="rewardGrid" class="grid grid-4"><div class="empty-state">Memuat...</div></div>
+      <h2 style="margin-top:28px;">Riwayat Klaim Saya</h2>
+      <div class="card"><div id="claimList"><div class="empty-state">Memuat...</div></div></div>
+    </section>
+
+    <!-- REKOMENDASI AI -->
+    <section class="page-section" id="page-rekomendasi">
+      <h1>✨ Rekomendasi Opportunity (AI)</h1>
+      <p style="color:var(--text-muted); font-size:14px;">
+        Rekomendasi dihasilkan otomatis dengan mencocokkan skill kamu yang sudah <b>terverifikasi</b> dengan opportunity yang tersedia.
+      </p>
+      <div id="recoBox"><div class="empty-state">Memuat...</div></div>
+    </section>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/mahasiswa.js"></script>
+</body>
+</html>

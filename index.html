@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>University Talent Hub - Login</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-box">
+    <h1>🎓 University Talent Hub</h1>
+    <p class="subtitle">Ekosistem talenta mahasiswa berbasis gamification</p>
+
+    <div class="auth-tabs">
+      <button id="tabLoginBtn" class="active" onclick="switchTab('login')">Login</button>
+      <button id="tabRegisterBtn" onclick="switchTab('register')">Daftar Mahasiswa</button>
+    </div>
+
+    <div id="msgBox"></div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm" class="auth-form active">
+      <label>Email</label>
+      <input type="email" id="loginEmail" required placeholder="admin@talenthub.id" />
+      <label>Password</label>
+      <input type="password" id="loginPassword" required placeholder="••••••••" />
+      <button class="btn" style="width:100%; margin-top:16px;" type="submit">Masuk</button>
+      <div class="hint-box">
+        Demo admin: <b>admin@talenthub.id</b> / admin123<br />
+        Demo mahasiswa: <b>budi@student.id</b> / mahasiswa123
+      </div>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm" class="auth-form">
+      <label>Nama Lengkap</label>
+      <input type="text" id="regName" required />
+      <label>Email</label>
+      <input type="email" id="regEmail" required />
+      <label>Password</label>
+      <input type="password" id="regPassword" required minlength="6" />
+      <label>NIM</label>
+      <input type="text" id="regNim" />
+      <label>Program Studi</label>
+      <input type="text" id="regProdi" />
+      <label>Angkatan</label>
+      <input type="text" id="regAngkatan" placeholder="2023" />
+      <button class="btn" style="width:100%; margin-top:16px;" type="submit">Daftar sebagai Mahasiswa</button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard Admin - Talent Hub</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div class="app-shell">
+  <div class="sidebar">
+    <h2>🎓 Talent Hub</h2>
+    <div class="subtitle">Panel Administrator</div>
+    <nav>
+      <button class="nav-btn active" data-page="dashboard">📊 Dashboard</button>
+      <button class="nav-btn" data-page="mahasiswa">👥 Data Mahasiswa</button>
+      <button class="nav-btn" data-page="verifikasi">✅ Verifikasi</button>
+      <button class="nav-btn" data-page="reward">🎁 Reward Management</button>
+      <button class="nav-btn" data-page="leaderboard">🏆 Leaderboard</button>
+      <button class="nav-btn" data-page="opportunity">📢 Opportunity</button>
+    </nav>
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+  </div>
+
+  <div class="main">
+    <div id="msgBox"></div>
+
+    <!-- DASHBOARD -->
+    <section class="page-section active" id="page-dashboard">
+      <h1>📊 Dashboard Statistik</h1>
+      <div class="grid grid-4" id="statGrid">
+        <div class="empty-state">Memuat...</div>
+      </div>
+    </section>
+
+    <!-- DATA MAHASISWA -->
+    <section class="page-section" id="page-mahasiswa">
+      <h1>👥 Data Mahasiswa</h1>
+      <div class="card">
+        <div class="toolbar">
+          <input type="text" id="searchQ" placeholder="Cari nama / NIM..." />
+          <input type="text" id="searchSkill" placeholder="Filter skill (mis. programmer)" />
+          <input type="number" id="searchMinPoint" placeholder="Poin minimal" />
+          <button class="btn" onclick="loadStudents()">Cari</button>
+        </div>
+        <div id="studentList"><div class="empty-state">Memuat...</div></div>
+      </div>
+    </section>
+
+    <!-- VERIFIKASI -->
+    <section class="page-section" id="page-verifikasi">
+      <h1>✅ Verifikasi Pengajuan</h1>
+      <div class="toolbar">
+        <select id="verifType" onchange="loadSubmissions()">
+          <option value="skill">Skill</option>
+          <option value="certificate">Sertifikat</option>
+          <option value="portfolio">Portofolio</option>
+        </select>
+        <select id="verifStatus" onchange="loadSubmissions()">
+          <option value="pending">Menunggu</option>
+          <option value="approved">Disetujui</option>
+          <option value="rejected">Ditolak</option>
+        </select>
+      </div>
+      <div class="card"><div id="submissionList"><div class="empty-state">Memuat...</div></div></div>
+    </section>
+
+    <!-- REWARD MANAGEMENT -->
+    <section class="page-section" id="page-reward">
+      <h1>🎁 Reward Management</h1>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0;">Tambah Reward Baru</h3>
+          <form id="rewardForm">
+            <label>Judul Reward</label>
+            <input type="text" id="rTitle" required />
+            <label>Deskripsi</label>
+            <textarea id="rDesc" rows="2"></textarea>
+            <label>Poin Dibutuhkan</label>
+            <input type="number" id="rPoint" required min="1" />
+            <label>Stok</label>
+            <input type="number" id="rStock" required min="0" />
+            <button class="btn" style="margin-top:14px;" type="submit">Tambah Reward</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Daftar Reward</h3>
+          <div id="rewardAdminList"><div class="empty-state">Memuat...</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="page-section" id="page-leaderboard">
+      <h1>🏆 Leaderboard Mahasiswa</h1>
+      <div class="card"><div id="leaderboardList"><div class="empty-state">Memuat...</div></div></div>
+    </section>
+
+    <!-- OPPORTUNITY -->
+    <section class="page-section" id="page-opportunity">
+      <h1>📢 Posting Opportunity</h1>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3 style="margin-top:0;">Opportunity Baru</h3>
+          <form id="oppForm">
+            <label>Judul</label>
+            <input type="text" id="oTitle" required />
+            <label>Deskripsi</label>
+            <textarea id="oDesc" rows="3"></textarea>
+            <label>Skill Tags (pisahkan dengan koma)</label>
+            <input type="text" id="oTags" placeholder="mis. programmer, react, javascript" />
+            <button class="btn" style="margin-top:14px;" type="submit">Posting Opportunity</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0;">Daftar Opportunity</h3>
+          <div id="oppList"><div class="empty-state">Memuat...</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="/js/api.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>
