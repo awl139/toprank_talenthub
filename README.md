@@ -76,61 +76,6 @@ university-talent-hub/
 └── data/ , uploads/               # dibuat otomatis saat runtime
 ```
 
----
-
-## ✅ Checklist Fitur (sesuai study case)
-
-**Role Administrator**
-- [x] Login & Logout
-- [x] Dashboard statistik (jumlah mahasiswa, skill, sertifikat/portofolio, pengajuan pending)
-- [x] Lihat seluruh data mahasiswa + search berdasarkan skill & poin
-- [x] Verifikasi skill / sertifikat / portofolio (approve/reject + input poin manual)
-- [x] Reward management (tambah/hapus reward + poin dibutuhkan)
-- [x] Leaderboard mahasiswa
-- [x] Posting opportunity untuk mahasiswa
-
-**Role Mahasiswa**
-- [x] Login & Logout, Register
-- [x] Talent profile (lengkapi profil)
-- [x] Skill management (ajukan + upload bukti)
-- [x] Sertifikat (ajukan + upload file, poin otomatis sesuai tingkat)
-- [x] Portofolio (ajukan + upload file, poin otomatis sesuai tipe)
-- [x] Status pengajuan (pending/approved/rejected)
-- [x] Leaderboard
-- [x] Reward catalog + klaim reward pakai poin
-- [x] Rekomendasi opportunity berbasis AI (keyword-matching skill vs opportunity)
-
-**Teknikal**
-- [x] Responsive layout (grid otomatis menyesuaikan lebar layar)
-- [x] Dockerized (Dockerfile + docker-compose.yml)
-- [ ] Deploy Online — silakan deploy ke Railway/Render/VPS sesuai kebutuhanmu
-- [x] AI Recommendation
-
----
-
-## 🔑 Alur Poin Otomatis
-
-| Aktivitas | Level/Tipe | Poin |
-|---|---|---|
-| Sertifikat | Lokal | 1 |
-| Sertifikat | Regional | 3 |
-| Sertifikat | Nasional | 5 |
-| Sertifikat | Internasional | 10 |
-| Portofolio | Personal | 2 |
-| Portofolio | Freelance | 5 |
-| Portofolio | Industri | 8 |
-| Skill | — | Admin menentukan manual saat approve (default saran 5) |
-
-Poin hanya masuk ke akun mahasiswa **setelah admin approve** pengajuan.
-
----
-
-## 🧠 Tentang Fitur AI Recommendation
-
-`src/utils/recommend.js` mencocokkan skill mahasiswa yang **sudah approved** dengan `skill_tags` pada setiap opportunity yang diposting admin, lalu memberi skor kecocokan. Ini rule-based & jalan offline (tanpa API key) — cocok untuk demo cepat. Jika ingin upgrade ke rekomendasi berbasis LLM sungguhan, tinggal ganti isi fungsi `getRecommendations()` dengan pemanggilan API (mis. Anthropic API) dan kirim daftar skill + opportunity untuk di-ranking oleh model.
-
----
-
 ## 🧪 Cara Cepat Mencoba Alur Bisnis Utama
 
 1. Login sebagai **admin**, buka tab **Opportunity**, posting 1-2 opportunity dengan skill tags.
