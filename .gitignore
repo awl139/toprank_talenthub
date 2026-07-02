@@ -141,3 +141,20 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Mengabaikan folder dependency
+node_modules/
+
+# Mengabaikan file konfigurasi rahasia
+.env
+.env.local
+
+# Mengabaikan file database SQLite lokal kamu
+*.db
+*.sqlite
+*.sqlite3
+# Atau sebutkan spesifik foldernya jika ada di dalam folder:
+data/talenthub.db
+
+# Mengabaikan log error
+*.log
